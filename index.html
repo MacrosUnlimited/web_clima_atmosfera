@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atmosfera — Dashboard de Clima</title>
+
+  <!-- Google Fonts: Playfair Display + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 (iconos dinámicos de clima) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Fondo animado: tres orbes de color que cambian según el clima -->
+  <div class="bg-layer" id="bgLayer">
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+  </div>
+
+  <main class="app-container">
+
+    <!-- ── CABECERA ── -->
+    <header class="app-header">
+      <div class="brand">
+        <i class="fa-solid fa-wind brand-icon"></i>
+        <span class="brand-name">Atmosfera</span>
+      </div>
+      <p class="brand-tagline">Tu ventana al tiempo real</p>
+    </header>
+
+    <!-- ── BUSCADOR ── -->
+    <section class="search-section">
+      <div class="search-wrapper glass-card">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input
+          type="text"
+          id="cityInput"
+          class="search-input"
+          placeholder="Busca una ciudad…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="searchBtn" class="search-btn" aria-label="Buscar">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Ciudades rápidas -->
+      <div class="quick-cities">
+        <button class="city-chip" data-city="Madrid">Madrid</button>
+        <button class="city-chip" data-city="New York">New York</button>
+        <button class="city-chip" data-city="Tokyo">Tokyo</button>
+        <button class="city-chip" data-city="Sydney">Sydney</button>
+        <button class="city-chip" data-city="Cairo">Cairo</button>
+      </div>
+    </section>
+
+    <!-- ── ESTADO: CARGANDO ── -->
+    <div id="loadingState" class="state-panel hidden" aria-live="polite">
+      <div class="spinner">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="state-text">Consultando los cielos…</p>
+    </div>
+
+    <!-- ── ESTADO: ERROR ── -->
+    <div id="errorState" class="state-panel hidden" aria-live="assertive">
+      <i class="fa-solid fa-triangle-exclamation error-icon"></i>
+      <p class="state-text" id="errorMessage">Ciudad no encontrada.</p>
+      <p class="state-sub">Verifica el nombre e intenta de nuevo.</p>
+    </div>
+
+    <!-- ── CONTENIDO PRINCIPAL (visible al tener datos) ── -->
+    <section id="weatherContent" class="weather-content hidden">
+
+      <!-- Tarjeta clima actual -->
+      <article class="glass-card weather-main" id="weatherCard">
+
+        <div class="weather-header">
+          <div class="location-block">
+            <h1 class="city-name" id="cityName">—</h1>
+            <p class="country-date">
+              <span id="countryName"></span>
+              <span class="separator">•</span>
+              <span id="currentDate"></span>
+            </p>
+          </div>
+          <div class="weather-icon-wrap">
+            <i class="weather-icon" id="weatherIcon"></i>
+          </div>
+        </div>
+
+        <div class="weather-body">
+          <div class="temp-block">
+            <span class="temp-value" id="tempValue">—</span>
+            <div class="temp-unit-switch">
+              <button class="unit-btn active" id="btnCelsius">°C</button>
+              <span class="unit-sep">/</span>
+              <button class="unit-btn" id="btnFahrenheit">°F</button>
+            </div>
+          </div>
+          <p class="weather-desc" id="weatherDesc">—</p>
+        </div>
+
+        <!-- Métricas secundarias en grid -->
+        <div class="metrics-grid">
+          <div class="metric-item glass-inner">
+            <i class="fa-solid fa-droplet metric-icon"></i>
+            <span class="metric-value" id="humidity">—</span>
+            <span class="metric-label">Humedad</span>
+          </div>
+          <div class="metric-item glass-inner">
+            <i class="fa-solid fa-wind metric-icon"></i>
+            <span class="metric-value" id="windSpeed">—</span>
+            <span class="metric-label">Viento</span>
+          </div>
+          <div class="metric-item glass-inner">
+            <i class="fa-solid fa-gauge metric-icon"></i>
+            <span class="metric-value" id="pressure">—</span>
+            <span class="metric-label">Presión</span>
+          </div>
+          <div class="metric-item glass-inner">
+            <i class="fa-solid fa-eye metric-icon"></i>
+            <span class="metric-value" id="visibility">—</span>
+            <span class="metric-label">Visibilidad</span>
+          </div>
+          <div class="metric-item glass-inner">
+            <i class="fa-solid fa-temperature-half metric-icon"></i>
+            <span class="metric-value" id="feelsLike">—</span>
+            <span class="metric-label">Sensación</span>
+          </div>
+          <div class="metric-item glass-inner">
+            <i class="fa-solid fa-cloud metric-icon"></i>
+            <span class="metric-value" id="cloudiness">—</span>
+            <span class="metric-label">Nubosidad</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── PRONÓSTICO 5 DÍAS ── -->
+      <section class="forecast-section glass-card">
+        <h2 class="section-title">
+          <i class="fa-solid fa-calendar-days"></i>
+          Próximos 5 días
+        </h2>
+        <div class="forecast-strip" id="forecastStrip">
+          <!-- Generado dinámicamente -->
+        </div>
+      </section>
+
+      <!-- ── GRÁFICO CHART.JS ── -->
+      <section class="chart-section glass-card">
+        <h2 class="section-title">
+          <i class="fa-solid fa-chart-line"></i>
+          Variación de temperatura (24 h)
+        </h2>
+        <div class="chart-container">
+          <canvas id="tempChart"></canvas>
+        </div>
+      </section>
+
+    </section><!-- /weatherContent -->
+
+  </main>
+
+  <!-- Banner API Key faltante -->
+  <div id="apiKeyBanner" class="api-banner hidden">
+    <i class="fa-solid fa-key"></i>
+    Reemplaza <code>TU_API_KEY</code> en <code>script.js</code> con tu clave de
+    <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap</a>.
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
