@@ -59,39 +59,40 @@ Atmosfera/
 ├── style.css       # Estilos, animaciones de orbes y temas dinámicos.
 ├── script.js       # Lógica de fetching, renderizado y gestión de gráficos.
 └── README.md       # Documentación del proyecto.
+```
 
 ## Flujo de Obtención de Datos API
 
-<img width="6211" height="1260" alt="deepseek_mermaid_20260323_f42540" src="https://github.com/user-attachments/assets/9c1930bd-9ad2-454a-8388-01f2abe7c206" />
+<img width="6211" height="1260" alt="Flujo de Obtención de Datos API" src="https://github.com/user-attachments/assets/054ef510-192e-482a-88f7-c4e8b9e0e83e" />
 
 ## Flujo de Renderizado de Pronóstico
 
-<img width="2253" height="5482" alt="deepseek_mermaid_20260323_109a97" src="https://github.com/user-attachments/assets/1971f3f2-b5c1-4678-97af-5648fb8f9787" />
+<img width="2253" height="5482" alt="Flujo de Renderizado de Pronóstico" src="https://github.com/user-attachments/assets/d0a1f0a1-3ebf-4529-afd6-d25bb84d6a3f" />
 
 ## Flujo de Gestión de Temas Visuales
 
-<img width="4390" height="7557" alt="deepseek_mermaid_20260323_45df4a" src="https://github.com/user-attachments/assets/23790f19-1a49-41d0-800a-680a3289a8be" />
+<img width="4390" height="7557" alt="Flujo de Gestión de Temas Visuales" src="https://github.com/user-attachments/assets/29845965-ffa8-4616-b83f-7c8ea6a3f4bf" />
 
 ## Flujo de Conversión de Unidades
 
-<img width="1959" height="6787" alt="deepseek_mermaid_20260323_6a741b" src="https://github.com/user-attachments/assets/95e50a58-1b1e-44c6-96bd-a230d78f1af0" />
+<img width="1959" height="6787" alt="Flujo de Conversión de Unidades" src="https://github.com/user-attachments/assets/6b1fe8b9-5cc2-4c08-a07c-adf3fa34fd0e" />
 
 ## Ciclo de Vida del Gráfico
 
-<img width="1187" height="4611" alt="deepseek_mermaid_20260323_c3f248" src="https://github.com/user-attachments/assets/2b305c8a-b276-446c-aeab-ed113bd63877" />
+<img width="1187" height="4611" alt="Ciclo de Vida del Gráfico" src="https://github.com/user-attachments/assets/34456c9c-ef42-40e2-9027-0addeec2d84b" />
 
 ## Resumen de Estados de UI
 
-<img width="2216" height="2800" alt="deepseek_mermaid_20260323_8eadfe" src="https://github.com/user-attachments/assets/6483713b-75fb-4ea0-a4a7-ba0dc3f446a9" />
+<img width="2216" height="2800" alt="Resumen de Estados de UI" src="https://github.com/user-attachments/assets/753bd81f-b92f-462b-92cd-19755b030f8b" />
 
 ## Diagrama de Componentes
 
-<img width="7393" height="1673" alt="deepseek_mermaid_20260323_6bc517" src="https://github.com/user-attachments/assets/768f49e8-7c08-42cd-90b6-df0ae3cab6e6" />
+<img width="7393" height="1673" alt="Diagrama de Componentes" src="https://github.com/user-attachments/assets/8aae3248-7a4d-4719-90c1-cf0272a33419" />
 
 ## Flujo de Manejo de Errores
 
-<img width="2990" height="3715" alt="deepseek_mermaid_20260323_9d3407" src="https://github.com/user-attachments/assets/f41bb4f4-8f9a-4060-94ba-8a779183f07d" />
+<img width="2990" height="3715" alt="Flujo de Manejo de Errores" src="https://github.com/user-attachments/assets/588e3aff-b8c5-4b94-a4ae-8e567966b503" />
 
 ## Eventos de Usuario y Respuestas
 
-<img width="4090" height="4514" alt="deepseek_mermaid_20260323_b7e857" src="https://github.com/user-attachments/assets/c473f0e5-2652-4ade-b1c2-f0dfc0f49e3c" />
+<img width="4090" height="4514" alt="Eventos de Usuario y Respuestas" src="https://github.com/user-attachments/assets/f37a145f-7f79-420d-a901-87691a54ff74" />
